@@ -32,7 +32,7 @@ jobs:
         
       - name: Install dependencies & Build WASM
         run: |
-          npm install -g pyodide
+          pip install pyodide-build
           pyodide build
       
       - name: Test WASM with Node.js
