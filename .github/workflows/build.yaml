@@ -22,9 +22,6 @@ jobs:
       - name: Install dependencies
         run: poetry install
         
-      - name: Install Emscripten
-        uses: mymindstorm/setup-emsdk@v14
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -33,8 +30,18 @@ jobs:
       - name: Install dependencies & Build WASM
         run: |
           pip install pyodide-build
+          git clone https://github.com/emscripten-core/emsdk.git
+          cd home/runner/emsdk
+          pyodide config get emscripten_version
+          PYODIDE_EMSCRIPTEN_VERSION=$(pyodide config get emscripten_version)
+          ./emsdk install ${PYODIDE_EMSCRIPTEN_VERSION}
+          ./emsdk activate ${PYODIDE_EMSCRIPTEN_VERSION}
+          source emsdk_env.sh
+
+      - name: Install dependencies & Build WASM
+        run: |
           pyodide build
-      
+              
       - name: Test WASM with Node.js
         run: |
           node -e "require('./dist/scoutf_wasm.js')"
