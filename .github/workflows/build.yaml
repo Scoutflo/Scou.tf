@@ -20,6 +20,12 @@ jobs:
           curl -sSL https://install.python-poetry.org | python3 -
 
       - name: Install dependencies
+        run: poetry install
+        
+      - name: Install Emscripten
+        uses: mymindstorm/setup-emsdk@v14
+        
+      - name: Install dependencies & Build WASM
         run: |
           python -m pip install --upgrade pip
           # Setup EMSDK
@@ -28,15 +34,6 @@ jobs:
           ./emsdk install 3.1.46
           ./emsdk activate 3.1.46
           source ./emsdk_env.sh
-          
-      - name: Install dependencies
-        run: poetry install
-        
-      - name: Install Emscripten
-        uses: mymindstorm/setup-emsdk@v14
-        
-      - name: Build WASM
-        run: |
           pyodide config get emscripten_version
           pyodide build
           
