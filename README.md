@@ -1,6 +1,6 @@
 # Scoutf
 
-Scoutf is a utility tool designed by scoutflo.com to parse HCL (HashiCorp Configuration Language) code to JSON and vice versa. This tool is particularly useful for managing and converting infrastructure as code configurations.
+Scoutf is a utility tool designed by www.scoutflo.com to parse HCL (HashiCorp Configuration Language) code to JSON and vice versa. This tool is particularly useful for managing and converting infrastructure as code configurations.
 
 ## Features
 
