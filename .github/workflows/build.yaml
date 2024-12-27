@@ -32,6 +32,7 @@ jobs:
         
       - name: Build WASM
         run: |
+          poetry run pyodide config get emscripten_version
           poetry run pyodide build
           
       - name: Setup Node.js
