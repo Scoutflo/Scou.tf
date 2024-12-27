@@ -37,11 +37,8 @@ jobs:
           source ./emsdk_env.sh
           cd ..
           pyodide config get emscripten_version
-
-      - name: Install dependencies & Build WASM
-        run: |
           pyodide build
-              
+
       - name: Test WASM with Node.js
         run: |
           node -e "require('./dist/scoutf_wasm.js')"
