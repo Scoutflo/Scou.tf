@@ -28,7 +28,7 @@ jobs:
         run: poetry install
         
       - name: Install Emscripten
-        uses: mymindstorm/setup-emsdk@v12
+        uses: mymindstorm/setup-emsdk@v14
         
       - name: Build WASM
         run: |
