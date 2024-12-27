@@ -31,7 +31,7 @@ jobs:
         run: |
           pip install pyodide-build
           git clone https://github.com/emscripten-core/emsdk.git
-          cd home/runner/emsdk
+          cd emsdk
           pyodide config get emscripten_version
           PYODIDE_EMSCRIPTEN_VERSION=$(pyodide config get emscripten_version)
           ./emsdk install ${PYODIDE_EMSCRIPTEN_VERSION}
