@@ -24,19 +24,17 @@ jobs:
         
       - name: Install Emscripten
         uses: mymindstorm/setup-emsdk@v14
-        
-      - name: Install dependencies & Build WASM
-        run: |
-          python -m pip install --upgrade pip
-          pip install pyodide
-          pyodide config get emscripten_version
-          pyodide build
-          
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          
+        
+      - name: Install dependencies & Build WASM
+        run: |
+          npm install -g pyodide
+          pyodide build
+      
       - name: Test WASM with Node.js
         run: |
           node -e "require('./dist/scoutf_wasm.js')"
