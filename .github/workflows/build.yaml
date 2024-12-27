@@ -28,12 +28,7 @@ jobs:
       - name: Install dependencies & Build WASM
         run: |
           python -m pip install --upgrade pip
-          # Setup EMSDK
-          git clone https://github.com/emscripten-core/emsdk.git /home/runner/emsdk
-          cd /home/runner/emsdk
-          ./emsdk install 3.1.46
-          ./emsdk activate 3.1.46
-          source ./emsdk_env.sh
+          pip install pyodide
           pyodide config get emscripten_version
           pyodide build
           
