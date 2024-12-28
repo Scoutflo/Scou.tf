@@ -25,24 +25,14 @@ poetry run pytest
 
 ## Usage
 
+### HCL To JSON
 ```python
-from scoutf import ScoutfParser
+poetry run scoutf/cli.py main.tf output.json --to-json
+```
 
-def main():
-    content = {
-        'provider': [{'aws': {'region': 'var.region'}}],
-        'data': [{'aws_availability_zones': {'available': {'filter': [{'name': 'opt-in-status', 'values': ['opt-in-not-required']}]}}}],
-        'locals': [{'cluster_name': 'var.cluster_name'}],
-        'resource': [{'aws_eks_addon': {'ebs-csi': {'cluster_name': '${module.eks.cluster_name}', 'addon_name': 'aws-ebs-csi-driver'}}}],
-        'module': [{'vpc': {'source': 'terraform-aws-modules/vpc/aws', 'version': '3.19.0'}}]
-    }
-    
-    scoutflo_parser = ScoutfParser()
-    hcl_code = scoutflo_parser.json_to_hcl(content)
-    print(hcl_code)
-
-if __name__ == "__main__":
-    main()
+### JSON To HCL
+```python
+poetry run scoutf/cli.py input.json output.tf  --to-hcl
 ```
 
 ## Contributing
