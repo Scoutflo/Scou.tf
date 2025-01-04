@@ -83,6 +83,10 @@ class ScoutfParser:
         elif isinstance(value, dict):
             # If it's a dict, convert it to an HCL block
             return "{" + "\n".join([f"{k} = {self._hcl_value(v)}" for k, v in value.items()]) + "}\n"
+            
+        elif isinstance(value, bool):
+            # If it's a boolean, convert it to HCL boolean format
+            return "true" if value else "false"
         
         else:
             # For other types (int, bool, etc.), just return the value as is
